@@ -1,0 +1,28 @@
+
+.Content {
+  margin: o auto;
+  width:100%;
+  height: 380px;
+
+  overflow: hidden;
+
+}
+
+.Diario, .Mes {
+  float: left;
+}
+
+.Diario {
+  margin-left: 10px;
+   width:655px;
+
+   height: 380px;
+   overflow: scroll;
+}
+.Mes {
+  margin-left: 7px;
+  width: 655px;
+  height: 380px;
+
+  overflow: scroll;
+}
