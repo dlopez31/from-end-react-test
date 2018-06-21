@@ -2,10 +2,8 @@
 .Content {
   margin: o auto;
   width:100%;
-  height: 380px;
-
+  height: 430px;
   overflow: hidden;
-
 }
 
 .Diario, .Mes {
@@ -14,15 +12,16 @@
 
 .Diario {
   margin-left: 10px;
-   width:655px;
-
-   height: 380px;
-   overflow: scroll;
+  width:655px;
+  height: 425px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
+
 .Mes {
   margin-left: 7px;
   width: 655px;
-  height: 380px;
-
-  overflow: scroll;
+  height: 425px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }

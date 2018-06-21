@@ -3,63 +3,46 @@ import {
         LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend
       } from 'recharts';
 
-
-
 const DataDiaria = (props) => {
-  //console.log('props.data', props.data);
   const {
     data,
   } = props;
 
+  const result = data
+  const currey = result['Meta Data']['2. Digital Currency Code'];
+  const items = result['Time Series (Digital Currency Intraday)'];
 
-  // const information = data['Meta Data']['1. Information'];
-   const digitalCurrencyCode = data['Meta Data']['2. Digital Currency Code'];
-  // const digitalCurrencyName = data['Meta Data']['3. Digital Currency Name'];
-  // const marketCode = data['Meta Data']['4. Market Code'];
-  // const marketName = data['Meta Data']['5. Market Name'];
-  // const interval = data['Meta Data']['6. Interval'];
-  // const lastRefreshed = data['Meta Data']['7. Last Refreshed'];
-  // const timeZone = data['Meta Data']['8. Time Zone'];
+  const values = Object.keys(items).map((dateString) => {
+    const item = items[dateString];
+    // merge de item objecto y creo un objecto que contiene date que seria : 2018-06-19 11:10:00
+    return { ...item, ...{date: dateString} };
+  });
 
-
-  const rows = [];
-  const timeSeries = data['Time Series (Digital Currency Intraday)'];
-
-   // console.log('timeSeries', timeSeries);
-  // key is date
-  for(let key in timeSeries) {
-
-    if(timeSeries[key]) {
-      const finData = timeSeries[key];
-      const aPriceClp = parseFloat(finData['1a. price (CLP)']).toFixed(2);
-      const bPriceUsd = parseFloat(finData['1b. price (USD)']).toFixed(2);
-      const volumen = parseFloat(finData['2. volume']).toFixed(2);
-      const marketCapUsd = parseFloat(finData['3. market cap (USD)']).toFixed(2);
-
-      rows.push({
-        date: key, aPriceClp, bPriceUsd, volumen, marketCapUsd,
+   const arryas= values.map((item, index) => {
+    const CLP = parseFloat(parseFloat(item['1a. price (CLP)']).toFixed(2));
+    const USD = parseFloat(parseFloat(item['1b. price (USD)']).toFixed(2));
+    const volumen = parseFloat(parseFloat(item['2. volume']).toFixed(2));
+    const market = parseFloat(parseFloat(item['3. market cap (USD)']).toFixed(2));
+    return ({
+                date:item.date.toString(), CLP, USD, volumen, market,
             });
-    }
-  }
-
- //console.log('rows', rows);
+    });
 
   return (
     <div>
-      <h4 className="Titulo3" >Diarias { digitalCurrencyCode }</h4>
+      <h4 className="Titulo3" >Diarias { currey }</h4>
 
-      <LineChart width={650} height={300} data={rows}
-            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+         <LineChart width={1000} height={360} data={arryas}
+         margin={{top: 20, right: 5, left: 5, bottom: 2}} fontSize={10}>
          <XAxis dataKey="date"/>
          <YAxis/>
          <CartesianGrid strokeDasharray="3 3"/>
          <Tooltip/>
-         <Legend />
-         <Line type="monotone" dataKey="aPriceClp" stroke="#8884d8" dot={false} />
-         <Line type="monotone" dataKey="bPriceUsd" stroke="#B4045f" dot={false} />
-         <Line type="monotone" dataKey="volumen" stroke="#82ca9d" dot={false} />
-         <Line type="monotone" dataKey="marketCapUsd" stroke="#868A08" dot={false} />
-
+         <Legend verticalAlign="top" fontSize={5} height={40} iconSize={7} iconSize={14} textSize={10}  />
+         <Line name="Precio CLP" type="monotone" dataKey="CLP" stroke="#8884d8" dot={false} />
+         <Line name="Precio USD" type="monotone" dataKey="USD" stroke="#B4045f" dot={false} />
+         <Line name="Volumen"    type="monotone" dataKey="USD" stroke="#1DAD93" dot={false} />
+         <Line name="Mercado USD"type="monotone" dataKey="market" stroke="#868A08" dot={false} />
       </LineChart>
 
     </div>

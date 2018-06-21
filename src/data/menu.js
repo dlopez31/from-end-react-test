@@ -8,7 +8,7 @@ export default [
     url: '/fluctuacionBTC'
   },
   {
-    title: 'fluctuación de ETH',
+    title: 'Fluctuación de ETH',
     url: '/fluctuacionETH'
   }
 ];

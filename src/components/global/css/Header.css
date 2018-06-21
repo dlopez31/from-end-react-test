@@ -1,6 +1,6 @@
 .Header {
   background-color: #222;
-  height: 150px;
+  height: 100px;
   padding: 20px;
   color: white;
   text-align: center;
@@ -8,11 +8,11 @@
 
 .Logo img {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 40px;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.0em;
 }
 
 @keyframes App-logo-spin {
@@ -36,7 +36,15 @@
   text-decoration: none;
 }
 
-.Menu li a:hover {
-  color: #EEE;
 
+.Menu li a:link, {
+color:#3F3;
+}
+
+.Menu li a:hover{
+color:#F6A516;
+}
+
+.Menu li a:active{
+color:#F6A516;
 }
