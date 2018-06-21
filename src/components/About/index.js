@@ -36,6 +36,13 @@ class About extends Component {
           throw new Error('some error');
         })
         .then(response => {
+          if( response.hasOwnProperty('error'))
+          {
+            this.setState({
+              isLoading:false,
+              error: response.error,
+            })
+          }
           this.setState({
             isLoading: false,
             results: response.results,
@@ -60,6 +67,13 @@ class About extends Component {
           throw new Error('some error');
         })
         .then(response => {
+          if( response.hasOwnProperty('error'))
+          {
+            this.setState({
+              isLoading:false,
+              error: response.error,
+            })
+          }
           this.setState({
             isLoading: false,
             resultsm: response.results,
