@@ -8,6 +8,12 @@ const DataMensual = (props) => {
     datam,
   } = props;
 
+  if( datam.hasOwnProperty('error'))
+  {
+    console.log("Error Message");
+    return false;
+  }
+
   const result = datam
   const currey = result['Meta Data']['2. Digital Currency Code'];
   const items = result['Time Series (Digital Currency Monthly)'];

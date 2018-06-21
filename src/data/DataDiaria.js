@@ -7,7 +7,11 @@ const DataDiaria = (props) => {
   const {
     data,
   } = props;
-
+  if( data.hasOwnProperty('error'))
+  {
+    console.log("Error Message");
+    return false;
+  }
   const result = data
   const currey = result['Meta Data']['2. Digital Currency Code'];
   const items = result['Time Series (Digital Currency Intraday)'];
