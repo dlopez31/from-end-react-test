@@ -38,14 +38,12 @@ class About extends Component {
         .then(response => {
           if( response.hasOwnProperty('error'))
           {
-            this.setState({
-              isLoading:false,
-              error: response.error,
-            })
+            this.fetchProfileStockInfo();
+            this.fetchProfileStockInfom();
           }
           this.setState({
             isLoading: false,
-            results: response.results,
+            results: [response],
           });
         })
         .catch(err => {
@@ -69,14 +67,12 @@ class About extends Component {
         .then(response => {
           if( response.hasOwnProperty('error'))
           {
-            this.setState({
-              isLoading:false,
-              error: response.error,
-            })
+            this.fetchProfileStockInfo();
+            this.fetchProfileStockInfom();
           }
           this.setState({
             isLoading: false,
-            resultsm: response.results,
+            resultsm: [response],
           });
         })
         .catch(err => {

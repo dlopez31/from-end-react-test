@@ -28,63 +28,57 @@ class Contact extends Component {
 
   fetchProfileStockInfo() {
 
-      fetch('http://localhost:3300/api/daily?currency=BTC')
+    fetch('http://localhost:3300/api/daily?currency=BTC')
       .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw new Error('some error');
-        })
-        .then(response => {
-          if( response.hasOwnProperty('error'))
-          {
-            this.setState({
-              isLoading:false,
-              error: response.error,
-            })
-          }
-          this.setState({
-            isLoading: false,
-            results: response.results,
-          });
-        })
-        .catch(err => {
-          this.setState({
-            isLoading:false,
-            error: err.message,
-          })
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('some error');
+      })
+      .then(response => {
+        if (response.hasOwnProperty('error')) {
+          this.fetchProfileStockInfo();
+          this.fetchProfileStockInfom();
+        }
+        this.setState({
+          isLoading: false,
+          results:[response],
         });
+      })
+      .catch(err => {
+        this.setState({
+          isLoading: false,
+          error: err.message,
+        })
+      });
 
   }
 
   fetchProfileStockInfom() {
 
-      fetch('http://localhost:3300/api/monthly?currency=BTC')
+    fetch('http://localhost:3300/api/monthly?currency=BTC')
       .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          throw new Error('some error');
-        })
-        .then(response => {
-          if( response.hasOwnProperty('error'))
-          {
-            this.setState({
-              isLoading:false,
-              error: response.error,
-            })
-          }
-          this.setState({
-            isLoading: false,
-            resultsm: response.results,
-          });
-        })
-        .catch(err => {
-          this.setState({
-            isLoading:false,
-            error: err.message,
-          })
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('some error');
+      })
+      .then(response => {
+        if (response.hasOwnProperty('error')) {
+          this.fetchProfileStockInfo();
+          this.fetchProfileStockInfom();
+        }
+        this.setState({
+          isLoading: false,
+          resultsm: [response],
         });
+      })
+      .catch(err => {
+        this.setState({
+          isLoading: false,
+          error: err.message,
+        })
+      });
 
   }
 
@@ -98,7 +92,7 @@ class Contact extends Component {
 
     if (isLoading) {
       return (
-        <div className = "Contact">
+        <div className="Contact">
           <p> Loading... </p>
         </div>
       );
@@ -106,25 +100,25 @@ class Contact extends Component {
 
     if (error) {
       return (
-        <div className = "Contact" style = {{ backgroundColor: '#610B21' }} >
-            <p style = {{ color: '#fff' }} >
-              { error }
-            </p>
-         </div>
+        <div className="Contact" style={{ backgroundColor: '#610B21' }} >
+          <p style={{ color: '#fff' }} >
+            {error}
+          </p>
+        </div>
       );
     }
 
     return (
-      <div className = "Contact" >
-        <div className = "Diario">
-            { results.map((result, index) => <DataDiaria key={ index } data = { result } />)}
+      <div className="Contact" >
+        <div className="Diario">
+          {results.map((result, index) => <DataDiaria key={index} data={result} />)}
         </div>
-        <div className = "Mes" >
-          { resultsm.map((result, index) => <DataMensual key={ index } datam = { result } />)}
-        < /div>
+        <div className="Mes" >
+          {resultsm.map((result, index) => <DataMensual key={index} datam={result} />)}
+        </div>
       </div>
-      );
-    }
+    );
   }
+}
 
-  export default Contact;
+export default Contact;
