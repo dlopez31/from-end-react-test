@@ -11,7 +11,7 @@ class Contact extends Component {
     super(props);
 
     this.state = {
-      isLoading: true,
+      isLoadingb: true,
       error: null,
       results: [],
       resultsm: [],
@@ -28,7 +28,7 @@ class Contact extends Component {
 
   fetchProfileStockInfo() {
 
-    fetch('http://localhost:3300/api/daily?currency=BTC')
+    fetch('http://localhost:3300/api/hour?currency=BTC')
       .then(res => {
         if (res.ok) {
           return res.json();

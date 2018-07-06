@@ -28,7 +28,7 @@ class About extends Component {
 
   fetchProfileStockInfo() {
 
-      fetch('http://localhost:3300/api/daily?currency=ETH')
+      fetch('http://localhost:3300/api/hour?currency=ETH')
       .then(res => {
           if (res.ok) {
             return res.json();
